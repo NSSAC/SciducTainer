@@ -1,0 +1,20 @@
+%appinstall app001
+micromamba install --yes --name base --file /environment.yml
+cd bin
+ln -s /src/app_script001.py
+chmod +x app_script001.py
+
+%apphelp app001
+a little documentation for this app, if wanted
+
+%apprun app001
+mkdir -p $SCIF_APPDATA
+CMD="app_script001.py --outdir $SCIF_APPDATA $@"
+echo "Running $CMD" &&
+$CMD
+
+%apprun app001_sciduct
+mkdir -p $SCIF_APPDATA
+NAME="$(cat /job/job.json | jq .input.name)"
+AGE="$(cat /job/job.json | jq .input.age)"
+scif run app001 --name $NAME --age $AGE --outdir $SCIF_APPDATA
