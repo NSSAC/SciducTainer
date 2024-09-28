@@ -29,9 +29,12 @@ ln -s $SCIF_APPROOT/config.json /config.json
 %appenv sciduct
 CONFIG_JSON=$SCIF_APPROOT_sciduct/config.json
 export CONFIG_JSON
-VERSION=`cat $CONFIG_JSON | jq -r .version`
+VERSION=$(jq -r .version $CONFIG_JSON)
+LABELS_FILE=/.singularity.d/labels.json
+[ -f "$LABELS_FILE" ] &&
+VERSION=$(jq -r ".\"org.opencontainers.image.version\"" $LABELS_FILE)
 export VERSION
 
 
 %apprun sciduct
-cat $CONFIG_JSON
+jq -r ".version=\"$VERSION\"" $CONFIG_JSON
