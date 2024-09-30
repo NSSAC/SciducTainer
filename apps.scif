@@ -15,6 +15,6 @@ $CMD
 
 %apprun app001_sciduct
 mkdir -p $SCIF_APPDATA
-NAME="$(cat /job/job.json | jq .input.name)"
-AGE="$(cat /job/job.json | jq .input.age)"
+NAME="$(jq -r .input.name /job/job.json)"
+AGE="$(jq -r .input.age /job/job.json)"
 scif run app001 --name $NAME --age $AGE --outdir $SCIF_APPDATA
