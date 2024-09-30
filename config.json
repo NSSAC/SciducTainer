@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "Application 001",
-      "app": "app001",
+      "app": "app001_sciduct",
       "binds": {
         "input": "/input",
         "job": "/job",
