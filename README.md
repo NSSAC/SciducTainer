@@ -28,4 +28,4 @@ git push origin v0.1.1
 
 To enable Github Actions to build and publish this to the Github Container Resgistry (GHCR), someone will need to create an authentication [token](https://github.com/settings/tokens) with via their Github account having "repo" and "write:packages" permissions.
 
-The token and username needs to be saved as a repository secret (in "https://github.com/user-or-org-name/repo-name/settings/secrets/actions"), with names matching the ones in [.github/workflows/build_docker.yml](.github/workflows./build_docker.yml)
+The token and username needs to be saved as a repository secret (in "https://github.com/user-or-org-name/repo-name/settings/secrets/actions"), with names matching the ones in [.github/workflows/build_docker.yml](.github/workflows/build_docker.yml)
