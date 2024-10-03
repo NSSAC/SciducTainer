@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-import cyclopts
-from pathlib import Path
+import cyclopts # This 3rd-party package should be included in the environment.yml file pip section.
+from pathlib import Path # This Python Standard Library package should not be added to environment.yml.
 
 app = cyclopts.App(help="Help string for this app.")
 
