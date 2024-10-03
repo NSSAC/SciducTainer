@@ -6,6 +6,7 @@ COPY config.json /
 COPY src /src/
 COPY sciduct.scif /
 COPY apps.scif /
+COPY environment.yml /
 
 RUN --mount=type=secret,id=gh_token \
     scif install /sciduct.scif && rm -f /sciduct.scif
