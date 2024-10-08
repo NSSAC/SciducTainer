@@ -26,6 +26,31 @@ git tag v0.1.1
 git push origin v0.1.1
 ```
 
-To enable Github Actions to build and publish this to the Github Container Resgistry (GHCR), someone will need to create an authentication [token](https://github.com/settings/tokens) with via their Github account having "repo" and "write:packages" permissions.
+To enable Github Actions to build and publish this to the Github Container Resgistry (GHCR), someone will need to create an authentication [token](https://github.com/settings/tokens) with via their Github account having "repo" and "write:packages" permissions. If a private repo needs to be accessed, a "GH_TOKEN" with "repo" priveleges also needs to be added.
 
-The token and username needs to be saved as a repository secret (in "https://github.com/user-or-org-name/repo-name/settings/secrets/actions"), with names matching the ones in [.github/workflows/build_docker.yml](.github/workflows/build_docker.yml)
+The tokens and username needs to be saved as a repository secret (in "https://github.com/user-or-org-name/repo-name/settings/secrets/actions"), with names matching the ones in [.github/workflows/build_docker.yml](.github/workflows/build_docker.yml)
+
+
+Make sure to change your container image name to match your repo name (E.g. [here](https://github.com/NSSAC/SciducTainer/blob/a69540ac1a551f12f9d9748d11e28240096bd582/.github/workflows/build_docker.yml#L30)).
+
+## Pulling and Running (testing) the Container via Apptainer (Docker bootstrap)
+**Note: adjust names to match your actual container and repo name, NOT SciducTainer.**
+```bash
+git clone git@github.com:NSSAC/SciducTainer.git
+cd SciducTainer
+# module load apptainer
+apptainer pull docker://ghcr.io/nssac/sciductainer:0.1.0
+mkdir -p data
+apptainer run --bind=data:/scif/data sciductainer_0.1.0.sif run app001 --age 42
+# [app001] executing /bin/bash /scif/apps/app001/scif/runscript --age 42
+# Running app_script001.py --outdir /scif/data/app001 --age 42
+# Bob's age is 42.
+```
+
+If you want to also test changes to script files in the repository, and have the container use those, you can additionally `--bind` your local repo files in ("mounting" over the read-only copy of that in the container image).
+E.g.
+
+```bash
+# Change to 'age: int = 34' in src/app_script001.py
+apptainer run --bind=data:/scif/data,src:/src sciductainer_0.1.0.sif run app001
+```
