@@ -33,7 +33,7 @@ VERSION=$(jq -r .version $CONFIG_JSON)
 LABELS_FILE=/.singularity.d/labels.json
 [ -f "$LABELS_FILE" ] &&
 VERS=$(jq -r ".\"org.opencontainers.image.version\"" $LABELS_FILE) &&
-[ -z "$VERS" ] && VERSION=$VERS
+[ -z "$VERS" ] || VERSION=$VERS
 export VERSION
 
 
