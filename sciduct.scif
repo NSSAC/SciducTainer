@@ -1,8 +1,9 @@
 %appinstall sciduct
 BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
 mv /config.json config.json.in &&
-jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' config.json.in > config.json &&
-[ "$VERSION" = "0.0.0" ] || jq -r ".version=\"$VERSION\"" config.json > config.json
+jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' config.json.in > config.json
+cp config.json /tmp/config.json &&
+[ "$VERSION" = "0.0.0" ] || jq -r ".version=\"$VERSION\"" /tmp/config.json > config.json
 
 echo "trying to validate the jobservice config against . . ."
 echo "https://github.com/NSSAC/sciduct_jobservice/blob/main/src/jobservice/schema/image_configuration.json"
