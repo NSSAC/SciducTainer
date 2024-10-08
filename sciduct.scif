@@ -39,3 +39,10 @@ export VERSION
 
 %apprun sciduct
 jq -r ".version=\"$VERSION\"" $CONFIG_JSON
+
+
+%appinstall sciduct_version
+echo $VERSION > /sciduct_version.txt
+
+%apprun sciduct_version
+cat /sciduct_version.txt

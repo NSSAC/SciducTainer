@@ -1,5 +1,8 @@
 FROM ghcr.io/nssac/mambascif
 
+ARG VERSION
+ENV VERSION=${VERSION:-v0.0.0}
+
 RUN mkdir -p /run/secrets
 
 COPY config.json /

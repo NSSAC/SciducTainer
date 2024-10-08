@@ -52,5 +52,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ steps.meta.outputs.tags[2] }}
           secrets: |
             "gh_token=${{ secrets.GH_TOKEN }}"
