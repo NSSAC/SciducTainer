@@ -4,7 +4,13 @@
 import cyclopts # This 3rd-party package should be included in the environment.yml file pip section.
 from pathlib import Path # This Python Standard Library package should not be added to environment.yml.
 
-app = cyclopts.App(help="Help string for this app.")
+app = cyclopts.App(
+    help="Help string for this app.",
+    config=cyclopts.config.Json(
+        "config_example.json",  # Use this file, if in cwd (or a parent).
+        search_parents=True,
+        )
+    )
 
 @app.default
 def main(
