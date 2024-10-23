@@ -22,7 +22,9 @@ def main(
     Put any lines of code you would normally have in a
     simple Python "script" here.
     """
-    outpath = Path(outdir) / "main_output.txt"
+    outpath = Path(outdir)
+    outpath.mkdir(exist_ok=True, parents=True)
+    outpath /= "main_output.txt"
     output = f"{name}'s age is {age}.\n"
     print(output)
     with outpath.open("w") as filehandle:
