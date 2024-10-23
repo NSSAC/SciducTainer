@@ -12,12 +12,12 @@ micromamba activate app_env001
 # Sue's age is 33.
 ```
 
-The example app script shows a way to provide parameters via a config file (E.g. app_script001_config.json). An example file is provided as a starter.
+The [example app script](src/app_script001.py) shows a way to provide parameters via a config file (E.g. app_script001_config.json). An example file is provided as a starter.
 E.g.
 ```bash
 cp src/app_script001_config_example.json app_script001_config.json
 ```
-Those will be overridden by any explicit parameters passed in one the command line.
+Those will be overridden by any explicit parameters passed in on the command line.
 
 To use this, just click "Use this template". Create new repository with a name relevant for your app(s).
 Then change file and app names as appropriate (E.g. [src/app_script001.py](src/app_script001.py) and in [apps.scif](apps.scif)).
