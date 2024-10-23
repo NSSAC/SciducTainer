@@ -7,7 +7,7 @@ from pathlib import Path # This Python Standard Library package should not be ad
 app = cyclopts.App(
     help="Help string for this app.",
     config=cyclopts.config.Json(
-        "config_example.json",  # Use this file, if in cwd (or a parent).
+        "app_script001_config.json",  # Use this file, if in cwd (or a parent).
         search_parents=True,
         )
     )
