@@ -19,8 +19,19 @@ def main(
     outdir: str = "./"
     ):
     """
-    Put any lines of code you would normally have in a
+    This is the default function called when the script
+    is run from the command line. You can put any lines
+    of code you might normally have globally in a
     simple Python "script" here.
+
+    Parameters
+    ----------
+    name: str
+        The name of the person.
+    age: int
+        The age of the person.
+    outdir: str
+        The (created) directory the output file will be put in.
     """
     outpath = Path(outdir)
     outpath.mkdir(exist_ok=True, parents=True)
