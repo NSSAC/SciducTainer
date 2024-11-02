@@ -5,17 +5,11 @@ jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' config.json.in >
 cp config.json /tmp/config.json &&
 [ "$VERSION" = "0.0.0" ] || jq -r ".version=\"$VERSION\"" /tmp/config.json > config.json
 
-echo "trying to validate the jobservice config against . . ."
-echo "https://github.com/NSSAC/sciduct_jobservice/blob/main/src/jobservice/schema/image_configuration.json"
-REPO_NAME=sciduct_jobservice
-echo "using a Github token previously created at https://github.com/settings/tokens"
+echo validating against schema in ImageConfiguration.json
 cd lib
-git clone --depth=1 https://$(cat /run/secrets/gh_token)@github.com/NSSAC/${REPO_NAME}.git
-cd $REPO_NAME
-git show HEAD:src/jobservice/schema/image_configuration.json > image_configuration.json
-# We could, actually, remove the repo at this point. But it should be minimal, with depth=1, and no checked out files.
+curl --remote-name https://$(cat /run/secrets/gh_token)@raw.githubusercontent.com/NSSAC/sciduct_schemas/refs/heads/main/schema/ImageConfiguration.json
 JSONSCHEMA="$MAMBA_EXE run --name base jsonschema"
-VALIDATE_CMD="$JSONSCHEMA -i $SCIF_APPROOT/config.json image_configuration.json"
+VALIDATE_CMD="$JSONSCHEMA -i $SCIF_APPROOT/config.json ImageConfiguration.json"
 echo "Running: $VALIDATE_CMD"
 eval $VALIDATE_CMD
 if [ $? -eq 0 ]; then
