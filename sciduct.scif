@@ -5,7 +5,7 @@ jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' config.json.in >
 cp config.json /tmp/config.json &&
 [ "$VERSION" = "0.0.0" ] || jq -r ".version=\"$VERSION\"" /tmp/config.json > config.json
 
-echo validating against schema in ImageConfiguration.json
+echo validating against schema in image_configuration.json
 cd lib
 curl --remote-name https://$(cat /run/secrets/gh_token)@raw.githubusercontent.com/NSSAC/sciduct_jobservice/refs/heads/main/src/jobservice/schema/image_configuration.json
 JSONSCHEMA="$MAMBA_EXE run --name base jsonschema"
