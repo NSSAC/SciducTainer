@@ -7,11 +7,11 @@ RUN mkdir -p /run/secrets
 
 COPY config.json /
 COPY src /src/
-COPY sciduct.scif /
 COPY apps.scif /
 COPY environment.yml /
 
 RUN --mount=type=secret,id=gh_token \
+    curl --remote-name https://$(cat /run/secrets/gh_token)@raw.githubusercontent.com/NSSAC/SciducTainer/refs/heads/main/sciduct.scif \
     scif install /sciduct.scif && rm -f /sciduct.scif
 
 RUN --mount=type=secret,id=gh_token \
