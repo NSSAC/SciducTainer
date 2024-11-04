@@ -1,7 +1,6 @@
 %appinstall sciduct
 BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S.%NZ")
-mv /config.json config.json.in &&
-jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' config.json.in > config.json
+jq --arg build_date $BUILD_DATE '. + {build_date: $build_date}' /docker_context/config.json > config.json
 cp config.json /tmp/config.json &&
 [ "$VERSION" = "0.0.0" ] || jq -r ".version=\"$VERSION\"" /tmp/config.json > config.json
 
@@ -13,7 +12,7 @@ VALIDATE_CMD="$JSONSCHEMA -i $SCIF_APPROOT/config.json image_configuration.json"
 echo "Running: $VALIDATE_CMD"
 eval $VALIDATE_CMD
 if [ $? -eq 0 ]; then
-    echo "Generated Configuration appears to be valid" && rm -v $SCIF_APPROOT/config.json.in
+    echo "Generated Configuration appears to be valid"
 else
     echo "Generated Configuration failed validation"
     exit 1
