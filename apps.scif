@@ -8,8 +8,7 @@ chmod +x app_script001.py
 a little documentation for this app, if wanted
 
 %apprun app001
-mkdir -p $SCIF_APPDATA
-CMD="app_script001.py --outdir $SCIF_APPDATA $@"
+CMD="app_script001.py $@"
 echo "Running $CMD" &&
 $CMD
 
