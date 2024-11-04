@@ -11,7 +11,9 @@ COPY apps.scif /
 COPY environment.yml /
 
 RUN --mount=type=secret,id=gh_token \
-    scif install <(curl https://$(cat /run/secrets/gh_token)@raw.githubusercontent.com/NSSAC/SciducTainer/refs/heads/main/sciduct.scif)
+    mkfifo /tmp/sciduct.scif &&\
+    curl https://$(cat /run/secrets/gh_token)@raw.githubusercontent.com/NSSAC/SciducTainer/refs/heads/main/sciduct.scif > /tmp/sciduct.scif &&\
+    scif install /tmp/sciduct.scif
 
 RUN --mount=type=secret,id=gh_token \
     scif install /apps.scif && rm -f /apps.scif
