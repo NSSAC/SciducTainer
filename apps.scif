@@ -1,9 +1,11 @@
 %appinstall app001
 cp /docker_context/environment.yml .
 micromamba install --yes --name base --file environment.yml
-cd bin
+cd lib
 cp /docker_context/src/app_script001.py .
 chmod +x app_script001.py
+cd ../bin
+ln -s ../lib/app_script001.py
 
 %apphelp app001
 a little documentation for this app, if wanted

@@ -54,10 +54,10 @@ apptainer run --bind=data:/scif/data sciductainer_0.1.0.sif run app001 --age 42
 # Bob's age is 42.
 ```
 
-If you want to also test changes to script files in the repository, and have the container use those, you can additionally `--bind` your local repo files in ("mounting" over the read-only copy of that in the container image).
+If you want to also test changes to script files in the repository, and have the container use those, you can additionally `--bind` your local repo files directory in ("mounting" over the read-only copy of that in the container image).
 E.g.
 
 ```bash
 # Change to 'age: int = 34' in src/app_script001.py
-apptainer run --bind=data:/scif/data,src:/src sciductainer_0.1.0.sif run app001
+apptainer run --bind=data:/scif/data,src:/scif/apps/app001/lib sciductainer_0.1.5.sif run app001
 ```
