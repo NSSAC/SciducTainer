@@ -40,9 +40,9 @@ The tokens and username needs to be saved as a repository secret (in "https://gi
 
 Make sure to change your container image name to match your repo name (E.g. [here](https://github.com/NSSAC/SciducTainer/blob/a69540ac1a551f12f9d9748d11e28240096bd582/.github/workflows/build_docker.yml#L30)).
 
-The container package should be shown in under the "Packages" tab of your (or organization's) Github repository.
+The container package should be shown in under the "Packages" tab of your (or organization's) Github page.
 E.g. [github.com/orgs/NSSAC/packages](https://github.com/orgs/NSSAC/packages).
-Click on the link corresponding to then name you gave it in the [Github workflow build file](.github/workflows/build_docker.yml).
+Click on the link corresponding to the name you gave it in the [Github workflow build file](.github/workflows/build_docker.yml).
 There you can make sure the package is linked to the (this) repository with the build code, and set it to public visibility, if
 you want others to be able to pull it without logging in to GHCR.
 
