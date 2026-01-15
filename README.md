@@ -42,7 +42,7 @@ Make sure to change your container image name to match your repo name (E.g. [her
 
 The container package should be shown in under the "Packages" tab of your (or organization's) Github repository.
 E.g. [github.com/orgs/NSSAC/packages](https://github.com/orgs/NSSAC/packages).
-Click on the link corsponding to then name you gave it in the [Github workflow build file](.github/workflows/build_docker.yml).
+Click on the link corresponding to then name you gave it in the [Github workflow build file](.github/workflows/build_docker.yml).
 There you can make sure the package is linked to the (this) repository with the build code, and set it to public visibility, if
 you want others to be able to pull it without logging in to GHCR.
 
